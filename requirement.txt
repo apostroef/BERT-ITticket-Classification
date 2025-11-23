@@ -1,0 +1,14 @@
+evaluate
+matplotlib
+nltk
+numpy
+pandas
+sacremoses
+scipy
+seaborn
+sentencepiece
+torch
+rich
+scikit-learn
+tqdm
+transformers

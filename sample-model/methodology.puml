@@ -1,0 +1,25 @@
+
+@startuml AdamW_Flowchart
+title Flowchart Cara Kerja Optimizer AdamW (Per Iterasi)
+
+start
+:Ambil Batch Data Baru;
+:Hitung Loss dan Gradient g_t;
+
+' --- Adam Core ---
+:Hitung Estimasi Momen 1 (m_t) dan 2 (v_t);
+:Koreksi Bias Momen (m̂_t dan v̂_t);
+
+' --- AdamW Pembaruan Decoupled ---
+fork
+  :Hitung Pembaruan Dasar Adam:
+  \n$\Delta W_{Adam} = \eta \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon}$;
+fork again
+  :Hitung Weight Decay:
+  \n$-\eta \cdot \lambda \cdot W_{t-1}$;
+end fork
+
+:Pembaruan Bobot Akhir:
+\n$W_t = W_{t-1} - \Delta W_{Adam} - \eta \lambda W_{t-1}$;
+stop
+@enduml
